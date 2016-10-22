@@ -5,9 +5,6 @@ public class Transmitter {
 	public final int range = 500;
 	private static final String VOICENAME = "kevin16";
 	
-	public static string printRain {
-		if 
-	}
 	
 	void mySpeak()
 	{
