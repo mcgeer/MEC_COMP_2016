@@ -32,9 +32,6 @@ public class ApplicationView {
 	private final static StackLayout layout = new StackLayout();
 	private static PrimaryComposite primaryComposite;
 
-	// Menu Bar
-	private MenuItem menuHelpItemProgramHelp;
-	private MenuItem menuHelpItemGeneralHelp;
 
 	/**
 	 * Open the window.
@@ -67,11 +64,10 @@ public class ApplicationView {
 
 		backgroundMountains = new Image(display, bgIconData);
 
-		shellWidth = display.getClientArea().width;
-		shellHeight = display.getClientArea().height;
+		shellWidth = 1480;
+		shellHeight = 1024;
 		parentShell.setLocation(0, 0);
 		parentShell.setSize(shellWidth, shellHeight);
-		parentShell.setMaximized(true);
 		parentShell.setText("-Weather System-");
 		parentShell.setLayout(null);
 		Menu menu = new Menu(parentShell, SWT.BAR);
@@ -86,18 +82,6 @@ public class ApplicationView {
 		primaryComposite.setBackgroundImage(backgroundMountains);
 		primaryComposite.setBackgroundMode(SWT.INHERIT_FORCE);
 
-		MenuItem mntmHelp = new MenuItem(menu, SWT.CASCADE);
-		mntmHelp.setText("Help");
-
-		Menu menu_help = new Menu(mntmHelp);
-		menu_help.setLocation(new Point(0, 0));
-		mntmHelp.setMenu(menu_help);
-
-		menuHelpItemProgramHelp = new MenuItem(menu_help, SWT.NONE);
-		menuHelpItemProgramHelp.setText("Program Help");
-
-		menuHelpItemGeneralHelp = new MenuItem(menu_help, SWT.NONE);
-		menuHelpItemGeneralHelp.setText("General Help");
 
 	}
 
@@ -118,19 +102,7 @@ public class ApplicationView {
 		return parentShell;
 	}
 
-	/**
-	 * @return Program help option in the menu bar under help
-	 */
-	public MenuItem getMenuHelpItemProgramHelp() {
-		return menuHelpItemProgramHelp;
-	}
-
-	/**
-	 * @return General help option in the menu bar under help
-	 */
-	public MenuItem getMenuHelpItemGeneralHelp() {
-		return menuHelpItemGeneralHelp;
-	}
+ 
 
 	/**
 	 * @return Primary composite for parent shell
