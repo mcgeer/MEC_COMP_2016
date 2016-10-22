@@ -64,8 +64,8 @@ public class ApplicationView {
 
 		backgroundMountains = new Image(display, bgIconData);
 
-		shellWidth = 1480;
-		shellHeight = 1024;
+		shellWidth = display.getClientArea().width;
+		shellHeight = display.getClientArea().height;
 		parentShell.setLocation(0, 0);
 		parentShell.setSize(shellWidth, shellHeight);
 		parentShell.setText("-Weather System-");
