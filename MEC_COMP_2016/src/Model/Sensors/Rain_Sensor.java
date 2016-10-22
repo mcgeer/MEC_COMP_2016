@@ -16,5 +16,6 @@ public class Rain_Sensor implements ISensor {
 
 	public void update() {
 		this.isItRaining();
+		currentWeather.update();
 	}
 }

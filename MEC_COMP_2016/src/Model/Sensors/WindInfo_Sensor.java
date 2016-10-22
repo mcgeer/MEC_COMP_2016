@@ -2,13 +2,13 @@ package Model.Sensors;
 
 import Model.Weather;
 
-public class WindSpeed_Sensor implements ISensor {
+public class WindInfo_Sensor implements ISensor {
 
 	private Weather currentWeather;
 	public double windSpeed;
 	public double windDirection;
 	
-	public WindSpeed_Sensor(Weather weatherIn) {
+	public WindInfo_Sensor(Weather weatherIn) {
 		this.currentWeather = weatherIn;
 	}
 	
@@ -19,6 +19,7 @@ public class WindSpeed_Sensor implements ISensor {
 	
 	public void update() {
 		this.whatIsWindSpeed();
+		currentWeather.update();
 	}
 
 }

@@ -132,4 +132,8 @@ public Weather(){
 		this.sunSet = sunSet;
 	}
 	
+	public void update() {
+		// Updates weather using API...
+	}
+	
 }

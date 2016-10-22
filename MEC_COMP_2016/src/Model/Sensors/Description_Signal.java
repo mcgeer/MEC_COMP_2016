@@ -1,16 +1,16 @@
 package Model.Sensors;
 import Model.Weather;
 
-public class Pressure_Sensor implements ISensor {
+public class Description_Signal implements ISensor {
 	private Weather currentWeather;
-	public double pressure;
+	public String description;
 	
-	public Pressure_Sensor(Weather weatherIn) {
+	public Description_Signal(Weather weatherIn) {
 		this.currentWeather = weatherIn;
 	}
 	
 	public void getPressure(){
-		this.pressure = currentWeather.getPressure();
+		this.description = currentWeather.getDescription();
 	}
 
 	public void update() {
