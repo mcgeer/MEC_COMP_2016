@@ -15,6 +15,8 @@ public class Pressure_Sensor implements ISensor{
 
 	public void update() {
 		this.getPressure();
+		currentWeather.update();
+
 		
 	}
 
