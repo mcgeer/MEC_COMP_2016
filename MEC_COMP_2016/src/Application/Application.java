@@ -3,6 +3,7 @@ package Application;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
+import Controller.Controller;
 import UserInterface.ApplicationView;
 
 /**
@@ -21,12 +22,12 @@ public class Application {
 	public static void main(String args[]) {
 		ApplicationView v = new ApplicationView();
 		v.open();
+		Controller c = new Controller(v);
 		display = v.getDisplay();
 		parentShell = v.getParentShell();
 		Run();
 		
 	}
-	
 	
 	public static void Run() {
 		while (!display.isDisposed())

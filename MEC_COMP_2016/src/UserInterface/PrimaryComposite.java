@@ -8,7 +8,11 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
+import org.eclipse.swt.widgets.Text;
 
+import org.eclipse.wb.swt.SWTResourceManager;
+
+import UserInterface.Elements.BouyTableComposite;
 import UserInterface.Elements.ColorPalette;
 import UserInterface.Elements.Console;
 public class PrimaryComposite extends Composite {
@@ -19,18 +23,29 @@ public class PrimaryComposite extends Composite {
 	private final int edgePaddingHeight;
 	private final int compBuffer = 20;
 
+	//Labels
+	private Label lattitudeLabel;
+	private Label longitudeLabel;
+		
+	//Text Boxes
+	private Text lattitudeText;
+	private Text longitudeText;
+	
+	//Buttons
 	private Button buttonAdd;
 	private Button buttonAnalyze;
+	
+	//Console
 	private Console consoleScrolledComposite;
 
 	// Tab Folders for holding the tabs
-	private TabFolder tabTables;
 	private TabFolder tabOutputs;
 
 	private Composite currentSubComposite = new Composite(this, SWT.None);
 	private Composite[] subComposites;
 
 	final private StackLayout layout = new StackLayout();
+	private BouyTableComposite bouyTable;
 
 	/**
 	 * Primary Composite Constructor for the gui.
@@ -65,26 +80,54 @@ public class PrimaryComposite extends Composite {
 		consoleScrolledComposite.setBounds(edgePaddingWidth, (int) (displayHeight * 0.775),
 				displayWidth - 2 * edgePaddingWidth, 150);
 
+		//SUB COMPOSITES
 		tabOutputs = new TabFolder(this, SWT.NONE);
 		tabOutputs.setBounds((int) (displayWidth * 0.5), edgePaddingHeight, displayWidth / 2 - edgePaddingWidth,
 				(int) (displayHeight * 0.65));
 
+		//LABELS
+		lattitudeLabel = new Label(this, SWT.SINGLE);
+		lattitudeLabel.setBounds(8 * compBuffer, displayHeight / 4 + edgePaddingWidth + 10,
+				displayWidth / 10, displayHeight / 30);
+		lattitudeLabel.setText("Lattitude");
+		lattitudeLabel.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
+		longitudeLabel = new Label(this, SWT.SINGLE);
+		
+		longitudeLabel= new Label(this, SWT.SINGLE);
+		longitudeLabel.setBounds(8 * compBuffer, displayHeight / 4 + edgePaddingWidth + 10 + lattitudeLabel.getBounds().height * 2, 
+				displayWidth / 10, displayHeight / 30);
+		longitudeLabel.setText("Longitude");
+		longitudeLabel.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
+		longitudeLabel = new Label(this, SWT.SINGLE);
+		
+		//Text boxes
+		lattitudeText = new Text(this, SWT.BORDER);
+		lattitudeText.setBackground(ColorPalette.CUSTOM_WHITE);
+		lattitudeText.setBounds(8 * compBuffer + lattitudeLabel.getBounds().width , displayHeight / 4 + edgePaddingWidth + 10  + lattitudeLabel.getBounds().height * 2, 
+				displayWidth / 6, displayHeight / 30);
 
-		tabTables = new TabFolder(this, SWT.NONE);
-		tabTables.setBounds(edgePaddingWidth, edgePaddingHeight, displayWidth / 2 - 2 * edgePaddingWidth,
-				(int) (displayHeight * 0.44));
+		longitudeText = new Text(this, SWT.BORDER);
+		longitudeText.setBackground(ColorPalette.CUSTOM_WHITE);
+		longitudeText.setBounds(8 * compBuffer + lattitudeLabel.getBounds().width , displayHeight / 4 + edgePaddingWidth + 10, 
+				displayWidth / 6, displayHeight / 30);
 
-
+		
+		//BUTTONS
 		buttonAdd = new Button(this, SWT.NONE);
-		buttonAdd.setBounds(displayWidth / 4 + 8 * compBuffer, displayHeight / 2 + edgePaddingWidth + 10,
+		buttonAdd.setBounds(displayWidth / 8 + 8 * compBuffer, displayHeight / 2 + edgePaddingWidth + 10,
 				displayWidth / 10, displayHeight / 30);
-		buttonAdd.setText("B1");
+		buttonAdd.setText("Add Buoy");
 
-		buttonAnalyze = new Button(this, SWT.NONE);
-		buttonAnalyze.setBounds(displayWidth / 4 + 8 * compBuffer, displayHeight / 2 + 2 * edgePaddingWidth + 20,
-				displayWidth / 10, displayHeight / 30);
-		buttonAnalyze.setText("B2");
-
+		
+		//Table
+		bouyTable = new BouyTableComposite(tabOutputs, SWT.BORDER | SWT.V_SCROLL, ColorPalette.CUSTOM_WHITE,
+				ColorPalette.CUSTOM_BLACK);
+		bouyTable.setBounds(tabOutputs.getBounds());
+		
+		TabItem tableOutTab = new TabItem(tabOutputs, SWT.NONE);
+		tableOutTab.setText("Output Table");
+		tableOutTab.setControl(bouyTable);
+		
 	}
 
 	// =====================Behavioral Code====================== //
@@ -116,5 +159,17 @@ public class PrimaryComposite extends Composite {
 	public Button getButtonAnalyze() {
 		return buttonAnalyze;
 	}
+	
+	public Double getLatText() throws NumberFormatException{
+		return Double.parseDouble(lattitudeText.getText());
+	}
 
+	public Double getLongText() throws NumberFormatException {
+		return Double.parseDouble(longitudeText.getText());
+	}
+	
+	public void postConsoleMessage(String message, boolean isError){
+		consoleScrolledComposite.addToConsole(message, isError);
+	}
+	
 }
