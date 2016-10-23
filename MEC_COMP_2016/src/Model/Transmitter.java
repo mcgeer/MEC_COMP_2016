@@ -9,15 +9,14 @@ import Model.Sensors.WindInfo_Sensor;
 import WeatherParser.WeatherParser;
 
 public class Transmitter {
+	private static Weather currentWeather;
 	public final int range = 500;
 	private static final String VOICENAME = "kevin16";
 	
-	
-	WeatherParser parsedWeather = new WeatherParser();
-	
-	parsedWeather.getWeather()
-	
-	public Transmitter() {
+	public Transmitter(String lat, String lon) {
+				
+		Transmitter.currentWeather = new WeatherParser().getWeather(lat, lon);
+		
 		Transmitter.currentWeather = new Weather();
 	}
 	
@@ -78,7 +77,7 @@ public class Transmitter {
 			System.out.println(e);
 		}
 		
-		currentWeather.update();
+		//currentWeather.update();
 		
 	}
 	

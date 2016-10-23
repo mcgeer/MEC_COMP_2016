@@ -15,7 +15,7 @@ public class Description_Signal implements ISensor {
 
 	public void update() {
 		this.getPressure();
-		currentWeather.update();
+
 	}
 
 }

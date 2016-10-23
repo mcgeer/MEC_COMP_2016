@@ -19,7 +19,6 @@ public class WindInfo_Sensor implements ISensor {
 	
 	public void update() {
 		this.whatIsWindSpeed();
-		currentWeather.update();
 	}
 
 }
