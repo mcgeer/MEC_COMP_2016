@@ -20,6 +20,7 @@ public class Application {
 	private static Display display;
 	
 	public static void main(String args[]) {
+		
 		ApplicationView v = new ApplicationView();
 		v.open();
 		Controller c = new Controller(v);
