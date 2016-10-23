@@ -16,7 +16,7 @@ import org.json.simple.parser.ParseException;
 import Model.Weather;
 public class WeatherParser {
 	public Weather getWeather(String lat, String lon){
-		Weather cw = new Weather();
+		Weather currWeather = null;
 
 		try {
 			URL url = new URL("http://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&appid=131822fb7178a06a3ccd98970f76c876");
@@ -54,7 +54,7 @@ public class WeatherParser {
 			System.out.println(elem3.get("deg"));
 			System.out.println(elem3.get("speed"));
 		
-			Weather currWeather = new Weather();
+			currWeather = new Weather();
 			currWeather.setLatitude((double) elem.get("lat"));
 			currWeather.setLatitude((double) elem.get("lon"));
 			currWeather.setDescription((String) ((JSONObject)elem1.get(0)).get("description"));
@@ -70,6 +70,6 @@ public class WeatherParser {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return cw;
+		return currWeather;
 	}
 }
