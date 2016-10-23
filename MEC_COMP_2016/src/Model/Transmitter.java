@@ -6,12 +6,16 @@ import Model.Sensors.Pressure_Sensor;
 import Model.Sensors.Rain_Sensor;
 import Model.Sensors.Temperature_Sensor;
 import Model.Sensors.WindInfo_Sensor;
+import WeatherParser.WeatherParser;
 
 public class Transmitter {
 	public final int range = 500;
 	private static final String VOICENAME = "kevin16";
 	
-	static Weather currentWeather;
+	
+	WeatherParser parsedWeather = new WeatherParser();
+	
+	parsedWeather.getWeather()
 	
 	public Transmitter() {
 		Transmitter.currentWeather = new Weather();
