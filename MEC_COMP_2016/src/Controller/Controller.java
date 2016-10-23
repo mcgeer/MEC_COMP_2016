@@ -11,6 +11,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 
+import Model.BuoyModel;
 import UserInterface.ApplicationView;
 import UserInterface.PrimaryComposite;
 import UserInterface.Elements.BouyTableComposite;
@@ -55,11 +56,13 @@ public class Controller {
 				}
 				pc.postConsoleMessage("Adding Buyo at Longitude: " + longitude + " Lattitude: " + lattitude, false);
 				
+				BuoyModel m = new BuoyModel(String.valueOf(pc.getLatText()), String.valueOf(pc.getLongText()));
+				
 				BouyTableItem item = new BouyTableItem(table, SWT.NULL);
 				item.getSpeakButton().addSelectionListener(new SelectionAdapter(){
 					@Override
 					public void widgetSelected(SelectionEvent arg0) {
-						//SPEAK HERE
+						m.speak();
 					}
 				});
 				

@@ -7,6 +7,7 @@ public class Humidity_Sensor implements ISensor{
 	
 	public Humidity_Sensor(Weather weatherIn) {
 		this.currentWeather = weatherIn;
+		getHumidity();
 	}
 	
 	public void getHumidity(){

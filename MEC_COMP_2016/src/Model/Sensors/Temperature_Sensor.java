@@ -3,11 +3,12 @@ import Model.Weather;
 
 public class Temperature_Sensor implements ISensor{
 	private Weather currentWeather;
-	public double temperature;
+	public String temperature;
 	public boolean isFailed;
 	
 	public Temperature_Sensor(Weather weatherIn) {
 		this.currentWeather = weatherIn;
+		getTemperature();
 	}
 	
 	public void getTemperature(){

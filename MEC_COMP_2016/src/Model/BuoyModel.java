@@ -24,26 +24,26 @@ public class BuoyModel extends Thread{
 		super.run();
 	}
 	
-	public static double getTemperature(Weather currentWeather) {
+	public static String getTemperature(Weather currentWeather) {
 		Temperature_Sensor temperature = new Temperature_Sensor(currentWeather);
 		
 		return temperature.temperature;
 	}
 	
-	public static double getWindSpeed(Weather currentWeather) {
+	public static String getWindSpeed(Weather currentWeather) {
 		WindInfo_Sensor windInfo = new WindInfo_Sensor(currentWeather);
 		
 		return windInfo.windSpeed;
 	}
 	
 	
-	private synchronized void speak(){
+	public synchronized void speak(){
 		Transmitter toTransmit = new Transmitter(this.lat, this.lon);
 		toTransmit.transmit();
 		
 	}
 	
-	public static double getWindDirection(Weather currentWeather) {
+	public static String getWindDirection(Weather currentWeather) {
 		WindInfo_Sensor windInfo = new WindInfo_Sensor(currentWeather);
 		
 		return windInfo.windDirection;

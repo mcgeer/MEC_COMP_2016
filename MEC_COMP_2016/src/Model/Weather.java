@@ -4,19 +4,19 @@ public class Weather {
 	public Weather(){
 		
 	};
-	private double latitude;
-	private double longitude;
+	private String latitude;
+	private String longitude;
 	private String condition;
 	private String description;
-	private double temperature;
+	private String temperature;
 	private double minTemperature;
 	private double maxTemperature;
 	private double seaLevelPressure;
 	private double groundLevelPressure;
 	private double pressure;
 	private long humidity;
-	private double windSpeed;
-	private double windDirection;
+	private String windSpeed;
+	private String windDirection;
 	private double cloudiness;
 	private double rainVolume;
 	private double snowVolume;
@@ -24,6 +24,7 @@ public class Weather {
 	private String countryCode;
 	private String sunRise;
 	private String sunSet;
+
 	
 	public String getCondition() {
 		return condition;
@@ -37,11 +38,14 @@ public class Weather {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public double getTemperature() {
+	public String getTemperature() {
+		
+		System.out.println(temperature);
+		
 		return temperature;
 	}
-	public void setTemperature(double temperature) {
-		this.temperature = temperature;
+	public void setTemperature(String string) {
+		this.temperature = string;
 	}
 	public double getMinTemperature() {
 		return minTemperature;
@@ -79,16 +83,16 @@ public class Weather {
 	public void setHumidity(long humidity) {
 		this.humidity = humidity;
 	}
-	public double getWindSpeed() {
+	public String getWindSpeed() {
 		return windSpeed;
 	}
-	public void setWindSpeed(double windSpeed) {
+	public void setWindSpeed(String windSpeed) {
 		this.windSpeed = windSpeed;
 	}
-	public double getWindDirection() {
+	public String getWindDirection() {
 		return windDirection;
 	}
-	public void setWindDirection(double windDirection) {
+	public void setWindDirection(String windDirection) {
 		this.windDirection = windDirection;
 	}
 	public double getCloudiness() {
@@ -133,17 +137,17 @@ public class Weather {
 	public void setSunSet(String sunSet) {
 		this.sunSet = sunSet;
 	}
-	public double getLatitude() {
+	public String getLatitude() {
 		return latitude;
 	}
-	public void setLatitude(double latitude) {
-		this.latitude = latitude;
+	public void setLatitude(String lat) {
+		this.latitude = lat;
 	}
-	public double getLongitude() {
+	public String getLongitude() {
 		return longitude;
 	}
-	public void setLongitude(double longitude) {
-		this.longitude = longitude;
+	public void setLongitude(String string) {
+		this.longitude = string;
 	}
 	
 }

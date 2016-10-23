@@ -40,7 +40,7 @@ public class WeatherParser {
 			JSONArray elem1 = (JSONArray)(obj.get("weather"));
 			JSONObject elem2 = (JSONObject)(obj.get("main"));
 			JSONObject elem3 = (JSONObject)(obj.get("wind"));
-		
+		/*
 			System.out.println(obj);
 			System.out.println(elem1);
 			System.out.println(((JSONObject)elem1.get(0)).get("description"));
@@ -53,19 +53,20 @@ public class WeatherParser {
 			System.out.println(elem2.get("humidity"));
 			System.out.println(elem3.get("deg"));
 			System.out.println(elem3.get("speed"));
-		
+		*/
 			currWeather = new Weather();
-			currWeather.setLatitude((double) elem.get("lat"));
-			currWeather.setLatitude((double) elem.get("lon"));
+			
+			currWeather.setLatitude(elem.get("lat").toString());
+			currWeather.setLongitude(elem.get("lon").toString());
 			currWeather.setDescription((String) ((JSONObject)elem1.get(0)).get("description"));
-			currWeather.setTemperature((double) (elem2.get("temp")));
+			currWeather.setTemperature(elem2.get("temp").toString());
 			currWeather.setMinTemperature((double)elem2.get("temp_min"));
 			currWeather.setMinTemperature((double)elem2.get("temp_max"));
 			currWeather.setGroundLevelPressure((double)elem2.get("grnd_level"));
 			currWeather.setSeaLevelPressure((double)elem2.get("sea_level"));
 			currWeather.setHumidity((long)elem2.get("humidity"));
-			currWeather.setWindDirection((double)elem3.get("deg"));
-			currWeather.setWindDirection((double)elem3.get("speed"));
+			currWeather.setWindDirection(elem3.get("deg").toString());
+			currWeather.setWindDirection(elem3.get("speed").toString());
 		}catch (IOException | ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

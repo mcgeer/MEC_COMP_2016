@@ -16,8 +16,6 @@ public class Transmitter {
 	public Transmitter(String lat, String lon) {
 				
 		Transmitter.currentWeather = new WeatherParser().getWeather(lat, lon);
-		
-		Transmitter.currentWeather = new Weather();
 	}
 	
 	private static String printRain() {
