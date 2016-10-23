@@ -11,7 +11,7 @@ import org.eclipse.swt.widgets.TableItem;
 public class BouyTableComposite extends ScrolledComposite {
 
 	private Table inputTable;
-	private String[] columnHeaders = { "Longitude", "Latitude", "Wind", "Temp", "DANGEROUS", "" };
+	private String[] columnHeaders = { "Longitude", "Latitude", "Wind Speed", "Wind Direction", "Temperature", "DANGEROUS", ""};
 	// private
 
 	/**

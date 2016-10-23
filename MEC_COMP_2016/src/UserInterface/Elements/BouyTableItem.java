@@ -18,9 +18,9 @@ import Constants.FilePaths;
 public class BouyTableItem {
 
 	private TableEditor editor;
-	private Button removeItemButton;
 	private TableItem item;
 	private Table solarTable;
+	private Button speakItemButton;
 
 	/**
 	 * Solar table item instance
@@ -35,27 +35,33 @@ public class BouyTableItem {
 		item = new TableItem(table, SWTargs);
 
 		editor = new TableEditor(table);
-		removeItemButton = new Button(table, SWT.NULL);
 
+		speakItemButton = new Button(table, SWT.NULL);
+
+		
+		InputStream SpeakInputStream = BouyTableItem.class.getResourceAsStream(FilePaths.SPEAKER_PATH);
+
+		Image speakIcon = new Image(item.getDisplay(), SpeakInputStream);
+		ImageData speakIconData = speakIcon.getImageData();
+		speakIconData = speakIconData.scaledTo(20, 20);
+		speakIcon = new Image(item.getDisplay(), speakIconData);
+		speakItemButton.setImage(speakIcon);
+
+		editor.setEditor(speakItemButton, item, 6);
+		
 		editor.grabHorizontal = true;
-
-		InputStream TrashInputStream = BouyTableItem.class.getResourceAsStream(FilePaths.TRASH_ICON_PATH);
-
-		Image trashIcon = new Image(item.getDisplay(), TrashInputStream);
-		ImageData trashIconData = trashIcon.getImageData();
-		trashIconData = trashIconData.scaledTo(20, 20);
-		trashIcon = new Image(item.getDisplay(), trashIconData);
-		removeItemButton.setImage(trashIcon);
-
-		editor.setEditor(removeItemButton, item, 7);
 	}
 
+	
+	public Button getSpeakButton(){
+		return this.speakItemButton;
+	}
+	
 	//Behaviour
 	/**
 	 * Frees all memory for this item and removes it from the table
 	 */
 	public void destroy() {
-		removeItemButton.dispose();
 		editor.dispose();
 		item.dispose();
 		solarTable.pack();
@@ -80,92 +86,77 @@ public class BouyTableItem {
 
 	/**
 	 * @param s
-	 *            set solar panel area to s on the view
+	 *            set wind speed to s on the view
 	 */
-	public void setArea(String s) {
+	public void setWindSpeed(String s) {
 		item.setText(2, s);
 	}
 
 	/**
 	 * @param s
-	 *            set the power loss coefficient to s on the view
+	 *            set the wind dir to s on the view
 	 */
-	public void setPowerLoss(String s) {
+	public void setWindDir(String s) {
 		item.setText(3, s);
 	}
 
 	/**
 	 * @param s
-	 *            set efficiency to s on the view
+	 *            set temp to s on the view
 	 */
-	public void setEfficiency(String s) {
+	public void setTemp(String s) {
 		item.setText(4, s);
 	}
 
 	/**
 	 * @param s
-	 *            set number of panels to s on the view
+	 *            set if dangerous conds to s on the view
 	 */
-	public void setNumberOfPanels(String s) {
+	public void setIsDangerous(String s) {
 		item.setText(5, s);
-	}
-
-	/**
-	 * @param s
-	 *            set cost of a panel to s on the view
-	 */
-	public void setCostPerUnit(String s) {
-		item.setText(6, s);
 	}
 
 	//GETTERS
 	/**
-	 * @return items longitude
+	 * @return items lat
 	 */
 	public String getLatitude() {
 		return item.getText(1);
 	}
 
 	/**
-	 * @return items latitude
+	 * @return items long
 	 */
 	public String getLongitude() {
 		return item.getText(0);
 	}
 
 	/**
-	 * @return items area
+	 * @return items wind speed
 	 */
-	public String getArea() {
+	public String getWindSpeed() {
 		return item.getText(2);
 	}
 
 	/**
-	 * @return items power loss coefficient
+	 * @return items wind dir
 	 */
-	public String getPowerLoss() {
+	public String getWindDirection() {
 		return item.getText(3);
 	}
 
 	/**
-	 * @return items efficiency
+	 * @return items temp
 	 */
-	public String getEfficiency() {
+	public String getTemp() {
 		return item.getText(4);
 	}
 
 	/**
-	 * @return items number of panels
+	 * @return item is dangerous
 	 */
-	public String getNumberOfPanels() {
+	public String getisDangerous() {
 		return item.getText(5);
-	}
-
-	/**
-	 * @return items cost per solar panel
-	 */
-	public String getCostPerUnit() {
-		return item.getText(6);
 	}
 
 	/**
@@ -174,12 +165,4 @@ public class BouyTableItem {
 	public Table getTable() {
 		return solarTable;
 	}
-
-	/**
-	 * @return Table the item belongs to
-	 */
-	public Button getRemoveButton() {
-		return removeItemButton;
-	}
-
 }

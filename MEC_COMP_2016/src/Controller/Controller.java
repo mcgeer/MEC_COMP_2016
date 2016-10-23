@@ -1,14 +1,20 @@
 package Controller;
 
+import java.util.List;
 import java.util.UUID;
 
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Table;
+import org.eclipse.swt.widgets.TableItem;
 
 import UserInterface.ApplicationView;
 import UserInterface.PrimaryComposite;
+import UserInterface.Elements.BouyTableComposite;
+import UserInterface.Elements.BouyTableItem;
 
 public class Controller {
 
@@ -17,12 +23,17 @@ public class Controller {
 	private Display display;
 	private ApplicationView v;
 	private PrimaryComposite pc;
+	private BouyTableComposite bouyTable;
+	private Table table;
+
 	
 	public Controller(ApplicationView v) {
 		this.v = v;
 		pc = v.getPrimaryComposite();
 		parentShell = v.getParentShell();
 		display = v.getDisplay();
+		bouyTable = pc.getTable();
+		table = bouyTable.getTable();
 		setUpControls();
 	}
 
@@ -42,16 +53,38 @@ public class Controller {
 					pc.postConsoleMessage("Longitude is bounded by +-180.", true);
 					return;
 				}
-				UUID itemID = UUID.randomUUID();
 				pc.postConsoleMessage("Adding Buyo at Longitude: " + longitude + " Lattitude: " + lattitude, false);
 				
-			
+				BouyTableItem item = new BouyTableItem(table, SWT.NULL);
+				item.getSpeakButton().addSelectionListener(new SelectionAdapter(){
+					@Override
+					public void widgetSelected(SelectionEvent arg0) {
+						//SPEAK HERE
+					}
+				});
+				
 			} catch(NumberFormatException e) {
 				pc.postConsoleMessage("INVALID LOCATION", true);
 			}
 		}
 		
 		});
+		
+		
+		pc.getButtonRemove().addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				for(int i : table.getSelectionIndices()){
+					if(i == -1)
+						pc.postConsoleMessage("No selection for removal.", true);
+					table.remove(i);
+					pc.postConsoleMessage("Removed item " + i, false);
+				}
+			}
+		});
 	}
+	
+	
+	
 
 }
