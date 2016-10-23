@@ -1,10 +1,11 @@
 package Model;
 
 public class Weather {
-public Weather(){
+	public Weather(){
 		
 	};
-	
+	private double latitude;
+	private double longitude;
 	private String condition;
 	private String description;
 	private double temperature;
@@ -13,16 +14,17 @@ public Weather(){
 	private double seaLevelPressure;
 	private double groundLevelPressure;
 	private double pressure;
-	private double humidity;
+	private long humidity;
 	private double windSpeed;
 	private double windDirection;
 	private double cloudiness;
-	public double rainVolume;
+	private double rainVolume;
 	private double snowVolume;
 	private String dataCalcTime;
 	private String countryCode;
 	private String sunRise;
 	private String sunSet;
+	
 	public String getCondition() {
 		return condition;
 	}
@@ -71,10 +73,10 @@ public Weather(){
 	public void setPressure(double pressure) {
 		this.pressure = pressure;
 	}
-	public double getHumidity() {
+	public long getHumidity() {
 		return humidity;
 	}
-	public void setHumidity(double humidity) {
+	public void setHumidity(long humidity) {
 		this.humidity = humidity;
 	}
 	public double getWindSpeed() {
@@ -131,9 +133,17 @@ public Weather(){
 	public void setSunSet(String sunSet) {
 		this.sunSet = sunSet;
 	}
-	
-	public void update() {
-		// Updates weather using API...
+	public double getLatitude() {
+		return latitude;
+	}
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+	public double getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
 	}
 	
 }
