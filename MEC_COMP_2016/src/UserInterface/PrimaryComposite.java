@@ -33,7 +33,7 @@ public class PrimaryComposite extends Composite {
 	
 	//Buttons
 	private Button buttonAdd;
-	private Button buttonAnalyze;
+	private Button buttonRemove;
 	
 	//Console
 	private Console consoleScrolledComposite;
@@ -82,9 +82,8 @@ public class PrimaryComposite extends Composite {
 
 		//SUB COMPOSITES
 		tabOutputs = new TabFolder(this, SWT.NONE);
-		tabOutputs.setBounds((int) (displayWidth * 0.5), edgePaddingHeight, displayWidth / 2 - edgePaddingWidth,
+		tabOutputs.setBounds((int) (displayWidth * 0.4), edgePaddingHeight, displayWidth / 2 + displayWidth/10- edgePaddingWidth,
 				(int) (displayHeight * 0.65));
-
 		//LABELS
 		lattitudeLabel = new Label(this, SWT.SINGLE);
 		lattitudeLabel.setBounds(8 * compBuffer, displayHeight / 4 + edgePaddingWidth + 10,
@@ -118,14 +117,19 @@ public class PrimaryComposite extends Composite {
 				displayWidth / 10, displayHeight / 30);
 		buttonAdd.setText("Add Buoy");
 
+		buttonRemove = new Button(this, SWT.NONE);
+		buttonRemove.setBounds(displayWidth / 8 + 8 * compBuffer, displayHeight / 2 + edgePaddingWidth + 10 + buttonAdd.getBounds().height * 2,
+				displayWidth / 10, displayHeight / 30);
+		buttonRemove.setText("Remove Selected Buoys");
+		
 		
 		//Table
-		bouyTable = new BouyTableComposite(tabOutputs, SWT.BORDER | SWT.V_SCROLL, ColorPalette.CUSTOM_WHITE,
+		bouyTable = new BouyTableComposite(tabOutputs, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL, ColorPalette.CUSTOM_WHITE,
 				ColorPalette.CUSTOM_BLACK);
 		bouyTable.setBounds(tabOutputs.getBounds());
 		
 		TabItem tableOutTab = new TabItem(tabOutputs, SWT.NONE);
-		tableOutTab.setText("Output Table");
+		tableOutTab.setText("Bouys");
 		tableOutTab.setControl(bouyTable);
 		
 	}
@@ -154,11 +158,12 @@ public class PrimaryComposite extends Composite {
 	}
 
 	/**
-	 * @return Gets the button to analyze
+	 * @return Gets the button to add
 	 */
-	public Button getButtonAnalyze() {
-		return buttonAnalyze;
+	public Button getButtonRemove() {
+		return buttonRemove;
 	}
+	
 	
 	public Double getLatText() throws NumberFormatException{
 		return Double.parseDouble(lattitudeText.getText());
@@ -170,6 +175,10 @@ public class PrimaryComposite extends Composite {
 	
 	public void postConsoleMessage(String message, boolean isError){
 		consoleScrolledComposite.addToConsole(message, isError);
+	}
+	
+	public BouyTableComposite getTable(){
+		return this.bouyTable;
 	}
 	
 }
