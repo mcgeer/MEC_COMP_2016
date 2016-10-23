@@ -6,6 +6,12 @@ import Model.Sensors.WindInfo_Sensor;
 public class BuoyModel extends Thread{
 	
 	private static int CLOCK = 20000;
+	private String lat, lon;
+	public BuoyModel(String lat, String lon){
+		this.lat = lat;
+		this.lon = lon;
+	}
+	
 	
 	@Override
 	public void run() {
@@ -28,6 +34,13 @@ public class BuoyModel extends Thread{
 		WindInfo_Sensor windInfo = new WindInfo_Sensor(currentWeather);
 		
 		return windInfo.windSpeed;
+	}
+	
+	
+	private synchronized void speak(){
+		Transmitter toTransmit = new Transmitter(this.lat, this.lon);
+		toTransmit.transmit();
+		
 	}
 	
 	public static double getWindDirection(Weather currentWeather) {
