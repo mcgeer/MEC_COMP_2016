@@ -23,8 +23,7 @@ public class Temperature_Sensor implements ISensor{
 	}
 
 	public void update() {
-		this.getTemperature();
-		currentWeather.update();		
+		this.getTemperature();	
 	}
 
 }

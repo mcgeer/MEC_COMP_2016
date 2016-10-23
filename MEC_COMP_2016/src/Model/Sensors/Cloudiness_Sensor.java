@@ -15,8 +15,6 @@ public class Cloudiness_Sensor implements ISensor{
 
 	public void update() {
 		this.getCloudiness();
-		currentWeather.update();
-
 		
 	}
 

@@ -15,8 +15,6 @@ public class Humidity_Sensor implements ISensor{
 
 	public void update() {
 		this.getHumidity();
-		currentWeather.update();
-
 		
 	}
 
